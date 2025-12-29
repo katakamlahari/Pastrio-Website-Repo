@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header / Navbar -->
+    <header>
+      <div class="header-wrapper">
+        <div class="header-top">
+          <a href="/" class="brand">
+            <img src="/images/logo.svg" alt="Pastrio" class="logo">
+            <div class="brand-text">
+              <span class="brand-name">Pastrio</span>
+              <span class="brand-tagline">Share & Paste</span>
+            </div>
+          </a>
+          <div class="header-actions">
+            <% if (currentUser) { %>
+              <span class="nav-link">Welcome, <strong><%= currentUser.username %></strong></span>
+              <form method="POST" action="/logout" style="display:inline">
+                <button class="btn btn-small">Logout</button>
+              </form>
+            <% } else { %>
+              <a href="/login" class="btn btn-small">Login</a>
+              <a href="/register" class="btn btn-small">Register</a>
+            <% } %>
+          </div>
+        </div>
+        <p class="subtitle">Share snippets instantly with secure, expiring links</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-fade-in">
+      <!-- Create Paste Form -->
+      <div class="form-wrapper">
+        <form id="pasteForm" class="paste-form">
+          <!-- Content Input -->
+          <div class="form-group">
+            <label for="content">Paste Content <span style="color: #ef4444;">*</span></label>
+            <textarea 
+              id="content" 
+              name="content" 
+              placeholder="Paste your code, text, or notes here..." 
+              rows="14" 
+              required
+              aria-label="Paste content"
+            ></textarea>
+          </div>
+
+          <!-- Expiration & Max Views -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expirationTime">Expires In (Optional)</label>
+              <div class="expiration-input">
+                <input 
+                  type="number" 
+                  id="expirationTime" 
+                  name="expirationTime" 
+                  placeholder="e.g., 24" 
+                  min="1"
+                  aria-label="Expiration time"
+                >
+                <select id="expirationUnit" name="expirationUnit" aria-label="Expiration unit">
+                  <option value="">Time Unit</option>
+                  <option value="minutes">Minutes</option>
+                  <option value="hours">Hours</option>
+                  <option value="days">Days</option>
+                </select>
+              </div>
+              <small>Leave empty for permanent paste</small>
+            </div>
+
+            <div class="form-group">
+              <label for="maxViews">Max Views (Optional)</label>
+              <input 
+                type="number" 
+                id="maxViews" 
+                name="maxViews" 
+                placeholder="e.g., 10" 
+                min="1"
+                aria-label="Maximum views allowed"
+              >
+              <small>Auto-deletes after N views</small>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary" aria-label="Create paste">✨ Create Paste</button>
+        </form>
+
+        <div id="result" class="result-wrapper" style="display: none;">
+          <div class="success-message">
+            <h2>✅ Paste Created Successfully!</h2>
+            <p>Share this link with others:</p>
+            <div id="urlBox" class="url-box">
+              <input 
+                type="text" 
+                id="pasteUrl" 
+                readonly 
+                class="url-input"
+                aria-label="Generated paste link"
+              >
+              <button type="button" id="copyBtn" class="btn btn-secondary" aria-label="Copy link">Copy Link</button>
+              <span id="copyBurst" class="copy-burst" aria-hidden="true">✓</span>
+            </div>
+            <p class="url-preview">
+              <a id="pasteLink" href="#" target="_blank">Open Paste →</a>
+            </p>
+          </div>
+        </div>
+
+        <div id="error" class="error-wrapper" style="display: none;">
+          <div class="error-message">
+            <h3>⚠️ Error</h3>
+            <p id="errorText"></p>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Features Section -->
+      <section class="features">
+        <h2>Why Pastrio?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Sharing</h3>
+            <p>Generate shareable links in seconds. No account required.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⏰</div>
+            <h3>Auto-Expiration</h3>
+            <p>Set time limits or view counts. Pastes auto-delete securely.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Private & Secure</h3>
+            <p>Your data is encrypted and never stored longer than needed.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Simple & Clean</h3>
+            <p>Beautiful, distraction-free interface. Zero complexity.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Pastrio — Made with 💜 for creators, developers, and teams</p>
+    </footer>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

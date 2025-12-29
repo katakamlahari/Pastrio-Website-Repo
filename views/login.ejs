@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - Pastrio</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header / Navbar -->
+    <header>
+      <div class="header-wrapper">
+        <div class="header-top">
+          <a href="/" class="brand">
+            <img src="/images/logo.svg" alt="Pastrio" class="logo">
+            <div class="brand-text">
+              <span class="brand-name">Pastrio</span>
+              <span class="brand-tagline">Share & Paste</span>
+            </div>
+          </a>
+          <div class="header-actions">
+            <a href="/" class="btn btn-small">← Back Home</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content - Auth Page -->
+    <main class="auth-page-wrapper">
+      <div class="form-wrapper auth-card page-fade-in">
+        <h2 style="font-family: 'Poppins', system-ui, sans-serif; font-size: 1.6rem; margin-bottom: 1rem; color: #111827;">Welcome Back</h2>
+        
+        <% if (typeof error !== 'undefined') { %>
+          <div class="error-message" style="margin-bottom: 1rem;">
+            <p><%= error %></p>
+          </div>
+        <% } %>
+
+        <form method="POST" action="/login" class="auth-form">
+          <div class="form-group auth-group">
+            <label for="username">Username</label>
+            <input 
+              type="text"
+              id="username" 
+              name="username"
+              placeholder="Enter your username" 
+              required 
+              aria-label="Username"
+            />
+          </div>
+
+          <div class="form-group auth-group">
+            <label for="password">Password</label>
+            <input 
+              type="password"
+              id="password" 
+              name="password"
+              placeholder="Enter your password" 
+              required 
+              aria-label="Password"
+            />
+          </div>
+
+          <div class="form-group auth-group">
+            <button class="btn btn-primary" type="submit">
+              🔐 Sign In
+            </button>
+          </div>
+        </form>
+
+        <p class="auth-footer">
+          Don't have an account? 
+          <a href="/register">Create one</a>
+        </p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Pastrio — Share your ideas securely</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - Pastrio</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header / Navbar -->
+    <header>
+      <div class="header-wrapper">
+        <div class="header-top">
+          <a href="/" class="brand">
+            <img src="/images/logo.svg" alt="Pastrio" class="logo">
+            <div class="brand-text">
+              <span class="brand-name">Pastrio</span>
+              <span class="brand-tagline">Share & Paste</span>
+            </div>
+          </a>
+          <div class="header-actions">
+            <a href="/" class="btn btn-small">← Back Home</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="error-page">
+        <div class="error-content page-fade-in">
+          <div class="error-code"><%= statusCode %></div>
+          <h2><%= title %></h2>
+          <p><%= message %></p>
+          <a href="/" class="btn btn-primary">← Return Home</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Pastrio — Share your ideas securely</p>
+    </footer>
+  </div>
+</body>
+</html>

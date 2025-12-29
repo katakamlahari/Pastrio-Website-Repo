@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="grad-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e8ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fce7f3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#grad-bg)" opacity="0.3"/>
+  
+  <!-- Main Icon - Stylized P with Link -->
+  <g>
+    <!-- P shape -->
+    <path d="M 20 12 L 20 52 M 20 12 L 38 12 Q 45 12 45 20 Q 45 28 38 28 L 20 28" 
+          stroke="url(#grad-icon)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Link chain element -->
+    <g transform="translate(28, 35)">
+      <!-- Left link -->
+      <rect x="0" y="0" width="8" height="8" rx="2" fill="url(#grad-icon)" opacity="0.7"/>
+      <!-- Connection line -->
+      <line x1="8" y1="4" x2="16" y2="4" stroke="url(#grad-icon)" stroke-width="2" stroke-linecap="round"/>
+      <!-- Right link -->
+      <rect x="16" y="0" width="8" height="8" rx="2" fill="url(#grad-icon)"/>
+    </g>
+  </g>
+  
+  <!-- Accent dots -->
+  <circle cx="52" cy="14" r="2.5" fill="url(#grad-icon)" opacity="0.6"/>
+  <circle cx="56" cy="50" r="2" fill="url(#grad-icon)" opacity="0.4"/>
+</svg>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - Pastrio</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header / Navbar -->
+    <header>
+      <div class="header-wrapper">
+        <div class="header-top">
+          <a href="/" class="brand">
+            <img src="/images/logo.svg" alt="Pastrio" class="logo">
+            <div class="brand-text">
+              <span class="brand-name">Pastrio</span>
+              <span class="brand-tagline">Share & Paste</span>
+            </div>
+          </a>
+          <div class="header-actions">
+            <a href="/" class="btn btn-small">+ Create Paste</a>
+            <% if (currentUser) { %>
+              <form method="POST" action="/logout" style="display:inline">
+                <button class="btn btn-small">Logout</button>
+              </form>
+            <% } else { %>
+              <a href="/login" class="btn btn-small">Login</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-fade-in">
+      <div class="paste-wrapper">
+        <div class="paste-header">
+          <div class="paste-info">
+            <h2>Paste Content</h2>
+            <p class="paste-meta">
+              📅 Created: <span id="createdDate"><%= new Date(paste.createdAt).toLocaleString() %></span>
+            </p>
+            <p class="paste-meta">
+              👁️ Views: <span id="viewCount"><%= paste.views %></span>
+              <span class="view-badge"><%= paste.views %></span>
+            </p>
+            <% if (paste.expiresAt) { %>
+              <p class="paste-meta">
+                ⏳ <span class="expiry-pill">Expires: <%= new Date(paste.expiresAt).toLocaleString() %></span>
+              </p>
+            <% } %>
+          </div>
+          <div class="paste-actions">
+            <button id="copyPasteBtn" class="btn btn-secondary">📋 Copy to Clipboard</button>
+            <a href="/" class="btn btn-primary">✨ Create New Paste</a>
+          </div>
+        </div>
+
+        <pre id="pasteContent" class="paste-content"><%= paste.content %></pre>
+      </div>
+
+      <div id="notification" class="notification" style="display: none;"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Pastrio — Share your ideas securely</p>
+    </footer>
+  </div>
+
+  <script>
+    // Copy paste content to clipboard
+    document.getElementById('copyPasteBtn').addEventListener('click', function() {
+      const content = document.getElementById('pasteContent').textContent;
+      
+      navigator.clipboard.writeText(content).then(() => {
+        showNotification('✅ Copied to clipboard!', 'success');
+      }).catch(() => {
+        showNotification('❌ Failed to copy', 'error');
+      });
+    });
+
+    function showNotification(message, type) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.className = `notification ${type}`;
+      notification.style.display = 'block';
+
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
