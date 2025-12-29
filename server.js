@@ -41,16 +41,22 @@ app.use(attachUser);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Connect to MongoDB
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => {
-    console.log('✅ MongoDB connected successfully');
-  })
-  .catch((error) => {
-    console.error('❌ MongoDB connection error:', error.message);
-    process.exit(1);
-  });
+// Connect to MongoDB (exported so serverless wrappers can initialize before handling)
+let _mongoConnectionPromise = null;
+function connectDB() {
+  if (mongoose.connection.readyState === 1) return Promise.resolve();
+  if (_mongoConnectionPromise) return _mongoConnectionPromise;
+  _mongoConnectionPromise = mongoose
+    .connect(MONGODB_URI)
+    .then(() => {
+      console.log('✅ MongoDB connected successfully');
+    })
+    .catch((error) => {
+      console.error('❌ MongoDB connection error:', error.message);
+      throw error;
+    });
+  return _mongoConnectionPromise;
+}
 
 // Routes
 app.get('/', (req, res) => {
@@ -68,8 +74,18 @@ app.use('/api/paste', pasteRoutes);
 // Error handling middleware
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`\n🚀 Server is running at http://localhost:${PORT}`);
-  console.log(`📝 Create paste at http://localhost:${PORT}`);
-});
+// Start server when running directly (not when required by serverless wrappers)
+if (require.main === module) {
+  connectDB()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`\n🚀 Server is running at http://localhost:${PORT}`);
+        console.log(`📝 Create paste at http://localhost:${PORT}`);
+      });
+    })
+    .catch((err) => {
+      console.error('Failed to start server due to DB error:', err.message || err);
+    });
+}
+
+module.exports = { app, connectDB };
