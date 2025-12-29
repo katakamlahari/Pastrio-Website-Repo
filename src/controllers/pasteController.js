@@ -1,4 +1,3 @@
-const { nanoid } = require('nanoid');
 const Paste = require('../models/Paste');
 
 const HASH_LENGTH = parseInt(process.env.HASH_LENGTH) || 6;
@@ -13,11 +12,16 @@ exports.createPaste = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Content is required' });
     }
 
-    // Generate unique hash
+    // Generate unique hash (dynamically import nanoid to support ESM-only package)
     let hash;
     let isUnique = false;
+    let _nanoid = null;
     while (!isUnique) {
-      hash = nanoid(HASH_LENGTH);
+      if (!_nanoid) {
+        const mod = await import('nanoid');
+        _nanoid = mod.nanoid || mod.default;
+      }
+      hash = _nanoid(HASH_LENGTH);
       const existing = await Paste.findOne({ hash });
       isUnique = !existing;
     }
