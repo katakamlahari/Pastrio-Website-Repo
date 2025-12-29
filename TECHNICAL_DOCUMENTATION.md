@@ -26,7 +26,7 @@
 
 ## 1.1 What is Pastrio?
 
-**Pastrio** is a modern, full-stack **Pastebin clone** — a web application that allows users to:
+**Pastrio** is a modern, full-stack web application that allows users to:
 - Share code snippets, text, and notes securely
 - Generate unique, shareable links
 - Set expiration times (minutes, hours, days)
