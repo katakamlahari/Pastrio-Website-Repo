@@ -1,8 +1,8 @@
-# 🎨 Pastrio - Premium Pastebin Clone
+# 🎨 Pastrio - Premium Web Application
 
 ## ✨ **Modern, Professional Design Upgrade**
 
-A beautifully redesigned pastebin application with a **premium purple, pink & white** theme, featuring smooth animations, glassmorphism effects, and a startup-ready aesthetic.
+A beautifully designed web application with a **premium purple, pink & white** theme, featuring smooth animations, glassmorphism effects, and a startup-ready aesthetic.
 
 ---
 
@@ -146,7 +146,7 @@ npm run dev
 ## 📁 **Project Structure**
 
 ```
-pastebin clone/
+pastrio website/
 ├── public/
 │   ├── css/
 │   │   └── style.css          (1000+ lines, premium styling)

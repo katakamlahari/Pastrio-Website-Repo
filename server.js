@@ -12,7 +12,7 @@ const { attachUser } = require('./src/middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/pastebin-clone';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/pastrio-website';
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));

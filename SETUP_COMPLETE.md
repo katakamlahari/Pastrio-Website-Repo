@@ -1,8 +1,8 @@
-# 🎉 Pastebin Clone - Complete Implementation
+# 🎉 Pastrio Website - Complete Implementation
 
 ## ✅ Project Successfully Built!
 
-Your complete Pastebin application is ready to run. Here's what you have:
+Your complete Pastrio application is ready to run. Here's what you have:
 
 ---
 
@@ -64,7 +64,7 @@ Visit: **http://localhost:3000**
 ## 📁 Complete File Structure
 
 ```
-pastebin-clone/
+pastrio-website/
 │
 ├── 📄 server.js                 # Main Express app
 ├── 📄 package.json              # Dependencies
