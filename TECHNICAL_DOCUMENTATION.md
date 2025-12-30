@@ -1678,7 +1678,7 @@ exports.createPaste = async (req, res) => {
 ### Environment Variables (.env)
 ```env
 # Database
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/pastrio
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/pastrio
 
 # Session Secret
 SESSION_SECRET=your-secure-random-secret-here

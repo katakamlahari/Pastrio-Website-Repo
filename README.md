@@ -76,9 +76,9 @@ You should see:
 1. Create a free account at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
 2. Create a cluster
 3. Update `.env` file with your connection string:
-   ```
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/pastebin-clone
-   ```
+  ```
+  MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/pastebin-clone
+  ```
 
 ### 4. Start the Application
 
